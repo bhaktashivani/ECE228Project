@@ -1,0 +1,179 @@
+code {
+  max-width: 100%;
+  overflow-x: scroll;
+}
+.panel {
+  background-color: #033c82;
+  color: #ffffff;
+  position: fixed;
+  left: -15.625em;
+  /*left or right and the width of your navigation panel*/
+  width: 15.625em;
+  /*should match the above value*/
+  z-index: 2;
+  overflow-y: scroll;
+  padding: 1rem;
+  height: 100%;
+}
+.panel li {
+  list-style: none;
+}
+.panel a {
+  color: #ffffff;
+}
+.panel a:hover {
+  color: #dea9ff;
+}
+.push {
+  overflow: hidden;
+  position: relative;
+  margin-top: 10rem;
+}
+.push header {
+  text-align: center;
+  position: fixed;
+  top: 0;
+  background: #f4f5f6;
+  border-bottom: .1rem solid #d1d1d1;
+  width: 100%;
+  z-index: 2;
+  height: 6rem;
+}
+.push header h1 {
+  margin-bottom: 0;
+  color: #033c82;
+}
+
+/* NIK */
+nav h5 {
+    margin-bottom: 1.0rem;
+}
+/* END OF NIK */
+
+/* PETER */
+
+body {
+  font-family: Helvetica,Verdana,sans-serif;
+  font-size: 14px;
+  color: black;
+}
+
+strong {
+  font-weight: 700;
+}
+
+h2 {
+  margin-bottom: 10px;
+  color: white;
+  padding: 5px;
+  padding-left: 10px;
+  background-color: #033c82;
+  font-size:20px;
+}
+
+.panel h5 {
+  margin-bottom: 10px;
+  color: white;
+  padding: 2px;
+  padding-left: 10px;
+  background-color: #396fb1;
+  font-size:18px;
+}
+
+h3 {
+  margin-bottom: 10px;
+  color: white;
+  padding: 5px;
+  background-color: gray;
+  font-size:18px;
+}
+
+
+table thead th {
+  text-align: left;
+  padding-left: 10px;
+  background-color: #e1e1e1;
+}
+
+table th:first-child, table td:first-child {
+    padding-left: 10px; !important 
+}
+
+table tr {
+  border: 1px black solid;
+  text-align: left;
+  margin-left: 5px;
+}
+
+code {
+  font-size:16px;
+}
+
+
+/* END OF PETER */
+
+.push header .menu-link {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.push header .github {
+  border: 0;
+  color: #f4f5f6;
+  fill: #9b4dca;
+  height: 6rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 6rem;
+  z-index: 1;
+}
+.anchor {
+  padding-top: 6rem;
+  margin-top: -6rem;
+}
+
+
+ul {
+    margin-bottom: inherit;
+}
+
+ul li.current {
+  border-bottom: 0.1rem solid #f4f5f6;
+  font-weight: bold;
+  margin-bottom: 0.9rem;
+}
+
+ul li:last-child {
+    margin-bottom: 2.3rem;
+}
+
+ul li.current:last-child {
+  margin-bottom: 2.2rem;
+}
+
+/*.current a {
+  color: #dea9ff;
+}*/
+/* Larger than mobile screen */
+/* Larger than tablet screen */
+@media (min-width: 80rem) {
+  .panel {
+    left: 0 !important;
+    display: inline-block !important;
+  }
+  .push {
+    position: relative !important;
+    display: inline-block !important;
+    width: calc(100% - 15.625em);
+    margin-left: 15.625em;
+  }
+  .push header {
+    width: calc(100% - 15.625em);
+    right: 0;
+  }
+  .push header .menu-link {
+    display: none;
+  }
+}
+/* Larger than desktop screen */
