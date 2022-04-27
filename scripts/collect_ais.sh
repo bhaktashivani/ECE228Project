@@ -5,8 +5,9 @@
 # WARNING: A single year's worth of data is about 100G, so be sure
 #          that you have enough space before downloading too much.
 
+target_dir=/mnt/windows/Users/Public/Documents/ECE278/project/data/
 site="https://coast.noaa.gov/htdata/CMSP/AISDataHandler/"
-years=(2021)
+years=$(seq 2016 2020)
 months=$(seq -f "%02g" 12)
 days=$(seq -f "%02g" 31)
 
@@ -16,9 +17,9 @@ do
    do
       for day in $days
       do
-         #echo $site$year"/AIS_"$year"_"$month"_"$day".zip"
          file=$site$year"/AIS_"$year"_"$month"_"$day".zip"
-         wget $file
+         #echo $file
+         wget $file -P $target_dir$year
       done
    done
 done

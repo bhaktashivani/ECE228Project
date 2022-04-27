@@ -11,11 +11,11 @@ def clean_file(input_file, output_file):
    print("masking")
    df = df.loc[mask]
 
-   drop_cols = ['VesselName','IMO','CallSign','Status',\
-                'Length','Width','Draft','TranscieverClass']
-   print("dropping cols")
+   cols = ['MMSI', 'BaseDateTime', 'LAT', 'LON', 'SOG',\
+           'COG', 'Heading','VesselType']
+   print("getting cols")
    # !!! Need to deal with TranceiverClass vs TrancieverClass issue !!!!!! #
-   df = df.drop(drop_cols,axis=1)
+   df = df[cols]
    print("dropping na")
    df = df[df.VesselType.notna()]
    print("writing csv")
