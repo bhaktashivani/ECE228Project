@@ -5,7 +5,7 @@ import sys
 def add_unique_id(input_file,output_file):
    df = pd.read_csv(input_file)
    df = df[df.VesselType.notna()]
-
+   
    if 'TranscieverClass' in df.columns:
       df['TransceiverClass'] = df['TranscieverClass']
 
@@ -15,7 +15,9 @@ def add_unique_id(input_file,output_file):
    else:
       cols = ['MMSI','VesselType','Length', 'Width', 'Draft', 'Cargo','TransceiverClass']
    df = df[cols]
-   df = df[(df.Length.notna()) & (df.Width.notna())]
+
+   # Add additional columns here to keep for classification purposes
+   df = df[(df.Length.notna()) & (df.Width.notna()) & (df.Draft.notna())]
    df_mmsi = df.MMSI.unique()
 
    uniq_df = pd.DataFrame(columns = cols);

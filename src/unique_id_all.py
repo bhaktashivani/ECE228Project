@@ -15,7 +15,7 @@ def add_unique_id(input_file,output_file):
    else:
       cols = ['MMSI','VesselType','Length', 'Width', 'Draft', 'Cargo','TransceiverClass']
    df = df[cols]
-   df = df[(df.Length.notna()) & (df.Width.notna())]
+   df = df[(df.Length.notna()) & (df.Width.notna()) & (df.Draft.notna()) & (df.Cargo.notna())]
    df_mmsi = df.MMSI.unique()
 
    uniq_df = pd.DataFrame(columns = cols);

@@ -6,13 +6,12 @@ clean_dir=/mnt/windows/Users/Public/Documents/ECE278/project/uniqueData/
 src_dir=~/Documents/classes/graduate/physical/project/ECE228Project-/src/
 out_file="uniqueMMSI.csv"
 
-years=(2021)
+years=$(seq 2017 2021)
 months=$(seq -f "%02g" 12)
 days=$(seq -f "%02g" 31)
 
 for year in $years
 do
-   mkdir -p $clean_dir$year
    for month in $months
    do
       for day in $days

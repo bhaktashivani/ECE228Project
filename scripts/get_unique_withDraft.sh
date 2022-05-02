@@ -2,15 +2,16 @@
 # Loop through AIS zip files, clean them, save cleaned data to another area
 
 data_dir=/mnt/windows/Users/Public/Documents/ECE278/project/data/
-clean_dir=/mnt/windows/Users/Public/Documents/ECE278/project/cleanData/
+clean_dir=/mnt/windows/Users/Public/Documents/ECE278/project/uniqueData/
 src_dir=~/Documents/classes/graduate/physical/project/ECE228Project-/src/
+out_file="uniqueMMSI_withDraft.csv"
+
 years=$(seq 2017 2021)
 months=$(seq -f "%02g" 12)
 days=$(seq -f "%02g" 31)
 
 for year in $years
 do
-   mkdir -p $clean_dir$year
    for month in $months
    do
       for day in $days
@@ -20,17 +21,10 @@ do
          zip_file=$year_dir$name.zip
          csv_file=$year_dir$name.csv
 
-         clean_year_dir=$clean_dir$year/
-         clean_name="Clean_"$name
-         clean_zip=$clean_year_dir$clean_name.zip
-         clean_csv=$clean_year_dir$clean_name.csv
-         
          unzip $zip_file -d $year_dir
-         python $src_dir\clean_data.py $csv_file $clean_csv
-         zip -r $clean_zip $clean_csv
+         python $src_dir\unique_id_withDraft.py $csv_file $clean_dir$out_file
 
          rm $csv_file
-         rm $clean_csv
          
       done
    done
