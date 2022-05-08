@@ -13,7 +13,7 @@ class AISDatasetMMSI(Dataset):
 
       # cut out data that doesn't have enough data to train/test on
       val_counts = df.VesselType.value_counts()
-      thresh = val_counts[val_counts > 100]
+      thresh = val_counts[val_counts > 1000]
       df = df[df.VesselType.isin(thresh.index)]
 
       # assign 0->C-1 labels to Vessel Type
@@ -25,6 +25,7 @@ class AISDatasetMMSI(Dataset):
       # move frame to object's data
       self.df = df
       self.num_class = len(df.VesselType.unique())
+      print("Created dataset with num_class=",self.num_class,", and length=",len(self.df))
 
    def __len__(self):
       return len(self.df)
@@ -34,6 +35,6 @@ class AISDatasetMMSI(Dataset):
       
       # Only looking at Length and Width in uniqueMMSI.csv file.
       # Other files may have more inputs, but will have less data overall
-      x = torch.Tensor([row["Length"],row["Width"]])
+      x = torch.Tensor([row["Length"],row["Width"],row["Draft"]])
       lbl = torch.Tensor([row["VesselType"]])
       return x,lbl
