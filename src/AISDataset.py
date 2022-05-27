@@ -16,6 +16,13 @@ class AISDatasetMMSI(Dataset):
       thresh = val_counts[val_counts > 1000]
       df = df[df.VesselType.isin(thresh.index)]
 
+      types = df.VesselType.unique()
+      for vessel_type in types:
+         type_df = df[df.VesselType==vessel_type]
+         if (len(type_df) > 5000):
+            type_df = type_df.iloc[5000:]
+            df.drop(index=type_df.index,inplace=True)
+
       # assign 0->C-1 labels to Vessel Type
       unique_type = df.VesselType.unique()
       zero_based = np.arange(len(unique_type))
