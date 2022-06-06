@@ -19,8 +19,8 @@ class AISDatasetMMSI(Dataset):
       types = df.VesselType.unique()
       for vessel_type in types:
          type_df = df[df.VesselType==vessel_type]
-         if (len(type_df) > 5000):
-            type_df = type_df.iloc[5000:]
+         if (len(type_df) > 2000):
+            type_df = type_df.iloc[2000:]
             df.drop(index=type_df.index,inplace=True)
 
       # assign 0->C-1 labels to Vessel Type

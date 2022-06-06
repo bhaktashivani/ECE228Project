@@ -8,6 +8,7 @@ class TwoLayerReLU(nn.Module):
       
       # Input layer to increase as we can use more information from data file
       self.lin1 = nn.Linear(3,32)
+      self.linMid = nn.Linear(32,32)
 
       self.batch_norm = nn.BatchNorm1d(32)
    
@@ -17,6 +18,9 @@ class TwoLayerReLU(nn.Module):
    def forward(self,x):
       x = self.lin1(x)
       x = self.batch_norm(x)
-      x = F.relu(x)
+      x = torch.sigmoid(x)
+      x = self.linMid(x)
+      x = self.batch_norm(x)
+      x = torch.sigmoid(x)
       x = self.lin2(x)
       return F.log_softmax(x,dim=1)

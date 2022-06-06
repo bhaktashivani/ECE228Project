@@ -23,7 +23,7 @@ test_loader = torch.utils.data.DataLoader(test_set,batch_size=64,shuffle=True)
 
 model = TwoLayerReLU(dataset.num_class)
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(),lr=0.01,betas=(0.9,0.99))
+optimizer = optim.Adam(model.parameters(),lr=2e-3,betas=(0.3,0.99))
 
 use_cuda = torch.cuda.is_available()
 if use_cuda:
@@ -33,16 +33,16 @@ print("use_cuda: ",use_cuda)
 test_acc = []
 train_loss = []
 
-for epoch in range(50):
+for epoch in range(500):
     train_loader = torch.utils.data.DataLoader(train_set,batch_size=64,shuffle=True)
     running_loss = 0.0
     for i,(inputs,labels) in enumerate(train_loader,0):
-        inputs = torch.tensor(inputs).float()
+#        inputs = torch.tensor(inputs).float()
         
         # was running into errors with out these two lines. Stackoverflow told me to do this
         labels = labels.squeeze_()
         labels = labels.type(torch.LongTensor)
-        labels = torch.tensor(labels)
+#        labels = torch.tensor(labels)
 
         if use_cuda:
             inputs,labels = inputs.cuda(),labels.cuda()

@@ -6,11 +6,11 @@ def evaluate(model,dataloader,use_cuda=False):
    y = []
 
    for batch, (inputs,labels) in enumerate(dataloader,0):
-      inputs = torch.tensor(inputs).float()
+      #inputs = torch.tensor(inputs).float()
       
       labels = labels.squeeze_()
       labels = labels.type(torch.LongTensor)
-      labels = torch.tensor(labels)
+      #labels = torch.tensor(labels)
       
       if use_cuda:
          inputs = inputs.cuda()
