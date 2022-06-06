@@ -2,6 +2,9 @@ import os
 import sys
 import pandas as pd
 
+# After data has been seperated into files by MMSI, 
+# further move all mmsi from specific type into a specific folder
+
 def collect_type(data_dir,type_num,output_dir):
    num_files_out = 0
    for f in os.listdir(data_dir):

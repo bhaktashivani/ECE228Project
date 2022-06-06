@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import sys
 
+# Go through and collect data around san diego with valid VesselType
+
 def clean_file(input_file, output_file):
    print("reading ", input_file)
    df = pd.read_csv(input_file)
@@ -14,7 +16,6 @@ def clean_file(input_file, output_file):
    cols = ['MMSI', 'BaseDateTime', 'LAT', 'LON', 'SOG',\
            'COG', 'Heading','VesselType']
    print("getting cols")
-   # !!! Need to deal with TranceiverClass vs TrancieverClass issue !!!!!! #
    df = df[cols]
    print("dropping na")
    df = df[df.VesselType.notna()]

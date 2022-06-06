@@ -3,6 +3,9 @@ import sys
 
 import pandas as pd
 
+# Get all time series data for a specific MMSI that was found using 
+# previous uniqueMMSI script
+
 def split(clean_df,mmsi_list,output_dir):
    
    num_files_created = 0

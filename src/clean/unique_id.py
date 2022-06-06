@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import sys
 
+# Create one CSV file with all the unique MMSI entries in the entire dataset
+# to use for classification task
+
 def add_unique_id(input_file,output_file):
    df = pd.read_csv(input_file)
    df = df[df.VesselType.notna()]

@@ -5,6 +5,11 @@ import pandas as pd
 
 from scipy.interpolate import CubicSpline
 
+# Assuming files are organized by MMSI,
+# seperate into different voyages and
+# validate that a "good" voyage has occured, smooth it, then write out
+# so that LSTM can use evenly-spaced time data
+
 def smooth(df):
    df = df.drop_duplicates(subset='BaseDateTime',keep='first')
    times = np.array(df.BaseDateTime - df.BaseDateTime.iloc[0]) / np.timedelta64(1,'m')
