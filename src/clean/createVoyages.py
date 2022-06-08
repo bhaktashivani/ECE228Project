@@ -12,7 +12,7 @@ from scipy.interpolate import CubicSpline
 
 def smooth(df):
    df = df.drop_duplicates(subset='BaseDateTime',keep='first')
-   times = np.array(df.BaseDateTime - df.BaseDateTime.iloc[0]) / np.timedelta64(1,'m')
+   times = np.array(df.BaseDateTime - df.BaseDateTime.iloc[0]) / np.timedelta64(5,'m')
    lat_spline = CubicSpline(times,df.LAT)
    lon_spline = CubicSpline(times,df.LON)
    sog_spline = CubicSpline(times,df.SOG)
@@ -37,8 +37,8 @@ def smooth(df):
 
 def split_into_voyages(file_name):
    # voyage must be longer than 10 min, but split into multiple if 30 min time diff
-   voyage_time_split = 30 #minutes
-   min_voyage_time = 10 #minutes
+   voyage_time_split = 60 #minutes
+   min_voyage_time = 25 #minutes
    df = pd.read_csv(file_name)
    df.BaseDateTime = pd.to_datetime(df.BaseDateTime)
    df = df.sort_values(by="BaseDateTime",ascending=True)
@@ -81,10 +81,14 @@ def split_into_voyages(file_name):
       
 
 def main(input_dir,output_dir):
+   num_files = 0
    for f in os.listdir(input_dir):
+      print("num_files",num_files)
+      num_files = num_files + 1
       file_name = input_dir + "/"  + f
       df = split_into_voyages(file_name)
-      df.to_csv(output_dir + "/" + f,index=False)
+      if (len(df) > 10):
+         df.to_csv(output_dir + "/" + f,index=False)
 
 if __name__=='__main__':
    data_dir = sys.argv[1]
