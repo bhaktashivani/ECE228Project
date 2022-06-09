@@ -32,3 +32,11 @@ Jupyter|
     ├── get_unique.sh       # Extract unique MMSI entries from the dataset. We need them for the classification task
 └── ...
 ```
+
+## Reproducing Results
+
+- step 1 (TO DO)
+- step 2 (TO DO)
+- ...
+
+
