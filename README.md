@@ -1,15 +1,18 @@
-# ECE228Project-
-## Two problems 
-What vessel it is? 
+# Vessel Classification and Trajectory Prediction
 
+This repository contains the base code for the ECE 228 project by Matthew Aguilar, Shivani Bhakta, and Parsa Assadi. You can find out more about project structure and reproducibility of results below.
 
+## Requirements  
 
+The project source code for training deep learning models uses Python. Shell scripts are used for some data clean up purposes. You can use the following command to install all Python requirements:
 
-Where it's going? 
+```
+pip install requirements.txt
+```
 
-Tasks: 
-
- 1. how much of data like latitude, longitude for each type of vehicle, timestamp, etc 
- 2. how many types of ship we have access everyday of every year
- 3. What would be the best way to classifiy. 
- 4.  
+Python Packages |
+------------- |
+Numpy |
+Pandas  |
+Matplotlib|
+PyTorch|
