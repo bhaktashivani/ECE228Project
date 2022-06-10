@@ -2,13 +2,18 @@ import pandas as pd
 import numpy as np
 import sys
 
-# Create one CSV file with all the unique MMSI entries in the entire dataset
-# to use for classification task
-
 def add_unique_id(input_file,output_file):
+   '''
+   Collect entries with valid Length, Width, and Draft entries for 3-D input to MLP
+   
+   Find all unique MMSI ID entries in the input file, choose a single entry for the ID, and 
+   place in the output file. 
+   
+   Create the output file if does not exist yet
+   '''
    df = pd.read_csv(input_file)
    df = df[df.VesselType.notna()]
-
+   
    if 'TranscieverClass' in df.columns:
       df['TransceiverClass'] = df['TranscieverClass']
 
@@ -18,7 +23,9 @@ def add_unique_id(input_file,output_file):
    else:
       cols = ['MMSI','VesselType','Length', 'Width', 'Draft', 'Cargo','TransceiverClass']
    df = df[cols]
-   df = df[(df.Length.notna()) & (df.Width.notna())]
+
+   # Add additional columns here to keep for classification purposes
+   df = df[(df.Length.notna()) & (df.Width.notna()) & (df.Draft.notna())]
    df_mmsi = df.MMSI.unique()
 
    uniq_df = pd.DataFrame(columns = cols);

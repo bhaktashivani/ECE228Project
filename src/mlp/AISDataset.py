@@ -6,6 +6,12 @@ from torch.utils.data import Dataset
 
 class AISDatasetMMSI(Dataset):
    def __init__(self, mmsi_file, data_dir, transform=None, target_transform=None):
+      '''
+      Expect dataset to be unbalanced, so limit all Vessel Types to have between 1000-2000
+      entries. 
+
+      Set up for Length, Width, and Draft to be input features, and the VesselType to be label
+      '''
       df = pd.read_csv(data_dir + mmsi_file)
 
       # will no longer be needed once i fix cleaning script
@@ -40,7 +46,6 @@ class AISDatasetMMSI(Dataset):
    def __getitem__(self,idx):
       row = self.df.iloc[idx]
       
-      # Only looking at Length and Width in uniqueMMSI.csv file.
       # Other files may have more inputs, but will have less data overall
       x = torch.Tensor([row["Length"],row["Width"],row["Draft"]])
       lbl = torch.Tensor([row["VesselType"]])

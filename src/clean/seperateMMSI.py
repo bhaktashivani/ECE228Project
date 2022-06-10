@@ -7,7 +7,10 @@ import pandas as pd
 # previous uniqueMMSI script
 
 def split(clean_df,mmsi_list,output_dir):
-   
+   '''
+   For each mmsi in mmsi_list, search the clean_df, grab all entries for that MMSI,
+   and place into csv file for the specific MMSI
+   '''
    num_files_created = 0
    for mmsi in mmsi_list:
       mmsi_df = pd.DataFrame()
@@ -29,6 +32,9 @@ def split(clean_df,mmsi_list,output_dir):
    return num_files_created
 
 def separate(input_dir,output_dir):
+   '''
+   For each file in 2021, split all unique MMSI IDs into their own files
+   '''
    uniqueMMSI_df = pd.read_csv(input_dir + "/uniqueMMSI_SanDiego.csv")
    unique_mmsi_list = list(uniqueMMSI_df.MMSI.unique())
    clean_file_list = []

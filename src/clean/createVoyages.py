@@ -11,6 +11,9 @@ from scipy.interpolate import CubicSpline
 # so that LSTM can use evenly-spaced time data
 
 def smooth(df):
+   '''
+   Smooth Lat,Lon,COG,SOG,and Heading data over time using a Cubic Spline"
+   '''
    df = df.drop_duplicates(subset='BaseDateTime',keep='first')
    times = np.array(df.BaseDateTime - df.BaseDateTime.iloc[0]) / np.timedelta64(5,'m')
    lat_spline = CubicSpline(times,df.LAT)
@@ -36,7 +39,11 @@ def smooth(df):
    return smooth_df
 
 def split_into_voyages(file_name):
-   # voyage must be longer than 10 min, but split into multiple if 30 min time diff
+   '''
+   Define voyages as longer than 10 minutes, and split if time breaks greater than 30min.
+   Then, remove any voyages that didn't go for long enough or where the vessel did
+   not move enough 
+   '''
    voyage_time_split = 60 #minutes
    min_voyage_time = 25 #minutes
    df = pd.read_csv(file_name)

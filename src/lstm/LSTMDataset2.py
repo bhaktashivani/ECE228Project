@@ -8,6 +8,10 @@ from torch.utils.data import Dataset
 
 class LSTMDataset2(Dataset):
    def __init__(self,data_dir,transform=None,target_transform=None):
+      '''
+      Load all data into single DataFrame
+      '''
+
       print("Loading dataset...")
       self.data_dir = data_dir
       self.file_list = os.listdir(data_dir)
@@ -37,14 +41,17 @@ class LSTMDataset2(Dataset):
       return self.len
 
    def __getitem__(self,idx):
+      # input only first 20 min. Since 5 minute interval, that is only first 4 samples
       x = self.full_df.iloc[idx*5:idx*5+4]
       if (idx*5+4 > len(self.full_df)):
          print("idx: ",idx)
          print("num_samp: ", self.len)
          print("len(full_df): ",len(self.full_df))
          print("x: ",x)
+      # 25th minute (5th sample) is the label
       y = self.full_df.iloc[idx*5+4]
 
       x = torch.Tensor(np.array([x.LAT.values,x.LON.values,x.SOG.values,x.COG.values,x.Heading.values]).T)
+      # only predict [LAT,LON]
       y = torch.Tensor(np.array([y.LAT,y.LON]).T)
       return x,y

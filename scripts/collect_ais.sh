@@ -5,9 +5,9 @@
 # WARNING: A single year's worth of data is about 100G, so be sure
 #          that you have enough space before downloading too much.
 
-target_dir=/mnt/windows/Users/Public/Documents/ECE278/project/data/
+target_dir='/path/to/data/directory'
 site="https://coast.noaa.gov/htdata/CMSP/AISDataHandler/"
-years=$(seq 2016 2020)
+years=$(seq 2016 2021)
 months=$(seq -f "%02g" 12)
 days=$(seq -f "%02g" 31)
 

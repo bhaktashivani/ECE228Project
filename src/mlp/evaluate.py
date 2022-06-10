@@ -2,6 +2,9 @@ import numpy as np
 import torch
 
 def evaluate(model,dataloader,use_cuda=False):
+   '''
+   Calculate accuracy by counting how many times the correct label was chosen and average
+   '''
    y_pred=[]
    y = []
 

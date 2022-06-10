@@ -1,9 +1,9 @@
 #!/bin/bash
 # Loop through AIS zip files, clean them, save cleaned data to another area
 
-data_dir=/mnt/windows/Users/Public/Documents/ECE278/project/data/
-clean_dir=/mnt/windows/Users/Public/Documents/ECE278/project/cleanData/
-src_dir=~/Documents/classes/graduate/physical/project/ECE228Project-/src/
+data_dir=/path/to/raw/data
+clean_dir=/path/for/clean/data
+src_dir=/path/where/python/scripts/live
 years=$(seq 2017 2021)
 months=$(seq -f "%02g" 12)
 days=$(seq -f "%02g" 31)

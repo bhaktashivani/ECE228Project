@@ -1,9 +1,10 @@
 #!/bin/bash
-# Loop through AIS zip files, clean them, save cleaned data to another area
 
-data_dir=/mnt/windows/Users/Public/Documents/ECE278/project/cleanData/unzipped/
-clean_dir=/mnt/windows/Users/Public/Documents/ECE278/project/cleanData/unzipped/
-src_dir=~/Documents/classes/graduate/physical/project/ECE228Project-/src/
+# Loop through unzipped files and call python script to collect the unqiue MMSI IDs
+# around the coast of California
+
+data_dir=/path/to/unzipped/data
+src_dir=/path/where/python/scripts
 out_file="uniqueMMSI_SanDiego.csv"
 
 #years=$(seq 2017 2021)
@@ -19,7 +20,7 @@ do
       name="Clean_AIS_"$year"_"$month"_"$day
       csv_file=$year_dir$name.csv
 
-      python $src_dir\unique_id_SanDiego.py $csv_file $clean_dir$out_file
+      python $src_dir\unique_id_SanDiego.py $csv_file $data_dir$out_file
 
    done
 done

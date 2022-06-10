@@ -10,7 +10,7 @@ from LSTMDataset import LSTMDataset
 from models import LSTM
 from evaluate import evaluate
 
-file_dir = "/mnt/windows/Users/Public/Documents/ECE278/project/cleanData/type37_2021_forLSTM"
+file_dir = "path/to/type{TYPE}_{YEAR}_forLSTM"
 dataset = LSTMDataset2(file_dir)
 #dataset = LSTMDataset(file_dir)
 

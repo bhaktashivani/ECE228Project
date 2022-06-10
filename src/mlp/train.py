@@ -9,8 +9,10 @@ from AISDataset import AISDatasetMMSI
 from models import TwoLayerReLU
 from evaluate import evaluate
 
+# !!! USER-CONFIG !!! #
 le_file = "uniqueMMSI_withDraft.csv"
 file_dir = "/mnt/windows/Users/Public/Documents/ECE278/project/uniqueData/"
+#file_dir = "/path/where/le_file/exists"
 dataset = AISDatasetMMSI(le_file,file_dir)
 
 split = np.array([0.8,0.2]) # 80%, 20% split

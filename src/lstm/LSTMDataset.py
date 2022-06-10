@@ -8,6 +8,11 @@ from torch.utils.data import Dataset
 
 class LSTMDataset(Dataset):
    def __init__(self,data_dir,transform=None,target_transform=None):
+      '''
+      Rather than loading all data into memory, keep data in csv files and read as needed.
+      To do this, an index is created upon dataset creation and then used to find
+      the correct file and voyage ID when provided an index from the outside
+      '''
       print("Loading dataset...")
       self.data_dir = data_dir
       self.file_list = os.listdir(data_dir)
