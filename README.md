@@ -30,6 +30,26 @@ Jupyter|
     ├── clean_data.sh       # Use src/clean/clean_data.py to filter invalid vessel types, and get vessels around San Diego
     ├── collect_ais.sh      # Downloads a portion of the dataset between an specific start date and end date from the dataset source
     ├── get_unique.sh       # Extract unique MMSI entries from the dataset. We need them for the classification task
+    ├── get_unique_SanDiego.sh       # Extract unique MMSI entries from the dataset around San Diego area
+├── src                     # Source code for training, evaluation, and data preprocessing for two designated tasks
+    ├── clean               # Contains source code for cleaning up datasets and preprocessing them
+        ├── clean_data.py       # filters invalid vessel types, and get vessels around San Diego
+        ├── collectByType.py    # categorize vessels by type in different directories
+        ├── createVoyages.py    # filters good voyages for LSTM
+        ├── seperateMMSI.py     # get all time series data for a specific MMSI
+        ├── unique_id.py        # finds all unique MMSI ID entries in the input file
+        ├── unique_id_SanDiego.py        # finds all unique MMSI ID entries in the input file around San Diego area
+    ├── mlp                # Contains source code for vessel classification task
+        ├── AISDataset.py       # setting up classification dataset and balancing the dataset
+        ├── evaluate.py         # utilities for evaluating models
+        ├── models.py           # deep learning models
+        ├── train.py            # training utilities
+    ├── lstm                # Contains source code for trajectory prediction task
+        ├── LSTMDataset.py      # setting up lstm dataset (reading into memory not all at once)
+        ├── LSTMDataset2.py     # setting up lstm dataset (reading into memory all at once)
+        ├── evaluate.py         # utilities for evaluating models
+        ├── models.py           # deep learning models
+        ├── train.py            # training utilities
 └── ...
 ```
 
